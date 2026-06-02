@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     btn_times = new QPushButton("X",this);
     btn_division = new QPushButton("/",this);
     btn_equal =new QPushButton("=",this);
+    btn_reset = new QPushButton("RST",this);
     btn_zero = new QPushButton("0",this);
     btn_one   = new QPushButton("1", this);
     btn_two   = new QPushButton("2", this);
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     btnlayolt->addWidget(btn_times);
     btnlayolt->addWidget(btn_division);
     btnlayolt->addWidget(btn_equal);
+    btnlayolt->addWidget(btn_reset);
 
     //numbers
 
@@ -81,7 +83,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(btn_plush, &QPushButton::clicked,this, &MainWindow::incriemnat);
     connect(btn_minus,  &QPushButton::clicked, this, &MainWindow::decrement);
     connect(btn_division,&QPushButton::clicked,this,&MainWindow::divide);
+    connect(btn_times, &QPushButton::clicked,this,&MainWindow::time);
     connect(btn_equal, &QPushButton::clicked,this,&MainWindow::equal);
+    connect(btn_reset, &QPushButton::clicked,this,&MainWindow::Reset);
     connect(btn_zero,&::QPushButton::clicked,this,&MainWindow:: number_zero);
     connect(btn_one,   &QPushButton::clicked, this, &MainWindow::number_one);
     connect(btn_two,   &QPushButton::clicked, this, &MainWindow::number_two);
@@ -111,113 +115,130 @@ void MainWindow::example(int num)
     }
 }
 
-    void MainWindow::incriemnat()
+void MainWindow::incriemnat()
+{
+    symbol ="+";
+    clicked =true;
+    label->setText("+");
+}
+
+void MainWindow::decrement()
+{
+    symbol ="-";
+    clicked =true;
+
+    label->setText("-");
+
+}
+
+void MainWindow::time()
+{
+    symbol ="X";
+    clicked =true;
+    label->setText("X");
+}
+void MainWindow::divide()
+{
+    symbol ="/";
+    clicked =true;
+
+    label->setText("/");
+}
+
+void MainWindow::Reset()
+{
+    firstnumber=0;
+    label->setText(QString::number(firstnumber));
+
+    secondnumber=0;
+    label->setText(QString::number(secondnumber));
+
+}
+
+void MainWindow::equal()
+{
+    int result;
+    if(symbol == "+")
     {
-        symbol ="+";
-        clicked =true;
-        label->setText("+");
+        result=  firstnumber + secondnumber;
+    }
+    else if(symbol == "-")
+    {
+        result = firstnumber - secondnumber;
     }
 
-    void MainWindow::decrement()
+    else if(symbol == "X")
     {
-        symbol ="-";
-        clicked =true;
-
-        label->setText("-");
-
-    }
-    void MainWindow::divide()
-    {
-        symbol ="/";
-        clicked =true;
-
-        label->setText("/");
+        result = firstnumber * secondnumber;
     }
 
-    void MainWindow::equal()
+    else if(symbol == "/")
     {
-        int result =0;
-        if(symbol == "+")
-        {
-          result=  firstnumber + secondnumber;
-        }
-        else if(symbol == "-")
-        {
-            result = firstnumber - secondnumber;
-        }
-
-        else if(symbol == "*")
-        {
-            result = firstnumber * secondnumber;
-        }
-
-        else if(symbol == "/")
-        {
-            result = firstnumber / secondnumber;
-        }
-
-
-
-        label->setText(QString::number(result));
-    }
-
-    void MainWindow::number_zero()
-    {
-        example(0);
-
-    }
-
-    void MainWindow::number_one()
-    {
-        example(1);
-
-    }
-
-    void MainWindow::number_two()
-    {
-        example(2);
+        result = firstnumber / secondnumber;
 
     }
 
-    void MainWindow::number_three()
-    {
-        example(3);
 
-    }
 
-    void MainWindow::number_four()
-    {
-        example(4);
+    label->setText(QString::number(result));
+}
 
-    }
+void MainWindow::number_zero()
+{
+    example(0);
 
-    void MainWindow::number_five()
-    {
-        example(5);
+}
 
-    }
+void MainWindow::number_one()
+{
+    example(1);
 
-    void MainWindow::number_six()
-    {
-        example(6);
-    }
+}
 
-    void MainWindow::number_seven()
-    {
-        example(7);
-    }
+void MainWindow::number_two()
+{
+    example(2);
 
-    void MainWindow::number_eight()
-    {
-        example(8);
-    }
+}
 
-    void MainWindow::number_nine()
-    {
-        example(9);
-    }
+void MainWindow::number_three()
+{
+    example(3);
 
-    MainWindow::~MainWindow()
-    {
-    }
+}
 
+void MainWindow::number_four()
+{
+    example(4);
+
+}
+
+void MainWindow::number_five()
+{
+    example(5);
+
+}
+
+void MainWindow::number_six()
+{
+    example(6);
+}
+
+void MainWindow::number_seven()
+{
+    example(7);
+}
+
+void MainWindow::number_eight()
+{
+    example(8);
+}
+
+void MainWindow::number_nine()
+{
+    example(9);
+}
+
+MainWindow::~MainWindow()
+{
+}
