@@ -25,6 +25,7 @@ private slots:
     void incriemnat();
     void decrement();
     void divide();
+    void time();
     void equal();
     void number_zero();
     void number_one();
@@ -36,6 +37,7 @@ private slots:
     void number_seven();
     void number_eight();
     void number_nine();
+    void Reset();
     void example(int num);
 
 
@@ -56,6 +58,7 @@ private:
     QPushButton *btn_seven;
     QPushButton *btn_eight;
     QPushButton *btn_nine;
+    QPushButton *btn_reset;
 
     QLabel *label;
     int number =0;
